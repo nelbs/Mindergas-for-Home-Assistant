@@ -1,0 +1,5 @@
+{
+  "name": "Mindergas for Home Assistant",
+  "domains": "sensor",
+  "render_readme": true
+}

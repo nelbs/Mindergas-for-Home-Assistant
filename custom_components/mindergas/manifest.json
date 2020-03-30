@@ -1,0 +1,11 @@
+{
+  "domain": "mindergas",
+  "name": "mindergas",
+  "documentation": "https://www.example.com",
+  "requirements": [
+    "lxml==4.3.3",
+    "bs4==0.0.1"
+  ],
+  "dependencies": [],
+  "codeowners": []
+}
