@@ -108,7 +108,6 @@ class GasPrognose(RestoreEntity):
 				# Scrape prognose
 				div = data.find_all("div", class_="table_cell")[9]
 				result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
-				_LOGGER.error('test warning')
 				self._attributes['last_update'] = dt.now().isoformat('T')
 				self._state = result
 			else: 
@@ -194,7 +193,6 @@ class GasUsed(RestoreEntity):
 				# Scrape gas used
 				div = data.find_all("div", class_="table_cell")[1]
 				result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
-				_LOGGER.error('test warning')
 				self._attributes['last_update'] = dt.now().isoformat('T')
 				self._state = result
 			else: 
@@ -280,7 +278,6 @@ class GraadDag(RestoreEntity):
 				# Scrape graaddag
 				div = data.find_all("div", class_="table_cell")[5]
 				result = eval(div.get_text().replace('m3/graaddag', '').replace(',', '.').rstrip())
-				_LOGGER.error('test warning')
 				self._attributes['last_update'] = dt.now().isoformat('T')
 				self._state = result
 			else: 
