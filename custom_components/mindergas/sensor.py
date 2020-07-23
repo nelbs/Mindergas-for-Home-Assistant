@@ -74,8 +74,14 @@ class GasPrognose(RestoreEntity):
 		from lxml import html
 		from bs4 import BeautifulSoup
 		LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
-		URL = "https://www.mindergas.nl/member/year_overview/new"
-		try:
+		URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+		URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
+		URL_RESULT = 'none'
+		n = 0
+		while not URL_RESULT == URL_DASHBOARD :
+			if n == 10:
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				break
 			session_requests = requests.session()
 
 			# Get login csrf token
@@ -91,18 +97,22 @@ class GasPrognose(RestoreEntity):
 
 			# Perform login
 			result = session_requests.post(LOGIN_URL, data=payload, headers=dict(referer=LOGIN_URL))
+			URL_RESULT = result.url
+			n += 1
 
-			# Scrape url
-			raw_html = session_requests.get(URL, headers=dict(referer=URL)).text
-			data = BeautifulSoup(raw_html, 'html.parser')
+			if URL_RESULT == URL_DASHBOARD:
+				# Scrape url
+				raw_html = session_requests.get(URL_DATA, headers=dict(referer=URL_DATA)).text
+				data = BeautifulSoup(raw_html, 'html.parser')
 
-			# Scrape prognose
-			div = data.find_all("div", class_="table_cell")[9]
-			result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
-			self._attributes['last_update'] = dt.now().isoformat('T')
-			self._state = result
-		except:
-			_LOGGER.error('Update of ' + str(self._name) + 'failed')
+				# Scrape prognose
+				div = data.find_all("div", class_="table_cell")[9]
+				result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
+				_LOGGER.error('test warning')
+				self._attributes['last_update'] = dt.now().isoformat('T')
+				self._state = result
+			else: 
+				pass
 
 	async def async_added_to_hass(self) -> None:
 		"""Handle entity which will be added."""
@@ -150,8 +160,14 @@ class GasUsed(RestoreEntity):
 		from lxml import html
 		from bs4 import BeautifulSoup
 		LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
-		URL = "https://www.mindergas.nl/member/year_overview/new"
-		try:
+		URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+		URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
+		URL_RESULT = 'none'
+		n = 0
+		while not URL_RESULT == URL_DASHBOARD :
+			if n == 10:
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				break
 			session_requests = requests.session()
 
 			# Get login csrf token
@@ -167,18 +183,22 @@ class GasUsed(RestoreEntity):
 
 			# Perform login
 			result = session_requests.post(LOGIN_URL, data=payload, headers=dict(referer=LOGIN_URL))
+			URL_RESULT = result.url
+			n += 1
 
-			# Scrape url
-			raw_html = session_requests.get(URL, headers=dict(referer=URL)).text
-			data = BeautifulSoup(raw_html, 'html.parser')
-			
-			# Scrape gas used
-			div = data.find_all("div", class_="table_cell")[1]
-			result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
-			self._attributes['last_update'] = dt.now().isoformat('T')
-			self._state = result
-		except:
-			_LOGGER.error('Update of ' + str(self._name) + 'failed')
+			if URL_RESULT == URL_DASHBOARD:		
+				# Scrape url
+				raw_html = session_requests.get(URL_DATA, headers=dict(referer=URL_DATA)).text
+				data = BeautifulSoup(raw_html, 'html.parser')
+				
+				# Scrape gas used
+				div = data.find_all("div", class_="table_cell")[1]
+				result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
+				_LOGGER.error('test warning')
+				self._attributes['last_update'] = dt.now().isoformat('T')
+				self._state = result
+			else: 
+				pass
 
 	async def async_added_to_hass(self) -> None:
 		"""Handle entity which will be added."""
@@ -226,8 +246,14 @@ class GraadDag(RestoreEntity):
 		from lxml import html
 		from bs4 import BeautifulSoup
 		LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
-		URL = "https://www.mindergas.nl/member/year_overview/new"
-		try:
+		URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+		URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
+		URL_RESULT = 'none'
+		n = 0
+		while not URL_RESULT == URL_DASHBOARD :
+			if n == 10:
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				break
 			session_requests = requests.session()
 
 			# Get login csrf token
@@ -243,18 +269,22 @@ class GraadDag(RestoreEntity):
 
 			# Perform login
 			result = session_requests.post(LOGIN_URL, data=payload, headers=dict(referer=LOGIN_URL))
+			URL_RESULT = result.url
+			n += 1
 
-			# Scrape url
-			raw_html = session_requests.get(URL, headers=dict(referer=URL)).text
-			data = BeautifulSoup(raw_html, 'html.parser')
+			if URL_RESULT == URL_DASHBOARD:			
+				# Scrape url
+				raw_html = session_requests.get(URL_DATA, headers=dict(referer=URL_DATA)).text
+				data = BeautifulSoup(raw_html, 'html.parser')
 
-			# Scrape graaddag
-			div = data.find_all("div", class_="table_cell")[5]
-			result = eval(div.get_text().replace('m3/graaddag', '').replace(',', '.').rstrip())
-			self._attributes['last_update'] = dt.now().isoformat('T')
-			self._state = result
-		except:
-			_LOGGER.error('Update of ' + str(self._name) + 'failed')
+				# Scrape graaddag
+				div = data.find_all("div", class_="table_cell")[5]
+				result = eval(div.get_text().replace('m3/graaddag', '').replace(',', '.').rstrip())
+				_LOGGER.error('test warning')
+				self._attributes['last_update'] = dt.now().isoformat('T')
+				self._state = result
+			else: 
+				pass
 			
 	async def async_added_to_hass(self) -> None:
 		"""Handle entity which will be added."""
