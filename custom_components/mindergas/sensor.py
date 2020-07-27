@@ -247,6 +247,7 @@ class GraadDag(RestoreEntity):
 		URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
 		URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
 		URL_RESULT = 'none'
+		
 		n = 0
 		while not URL_RESULT == URL_DASHBOARD :
 			if n == 10:
