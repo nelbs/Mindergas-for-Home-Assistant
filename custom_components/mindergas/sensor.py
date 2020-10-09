@@ -80,7 +80,7 @@ class GasPrognose(RestoreEntity):
 		n = 0
 		while not URL_RESULT == URL_DASHBOARD :
 			if n == 10:
-				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + str(n) + 'attempts')
 				break
 			session_requests = requests.session()
 
@@ -165,7 +165,7 @@ class GasUsed(RestoreEntity):
 		n = 0
 		while not URL_RESULT == URL_DASHBOARD :
 			if n == 10:
-				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + str(n) + 'attempts')
 				break
 			session_requests = requests.session()
 
@@ -250,7 +250,7 @@ class GraadDag(RestoreEntity):
 		n = 0
 		while not URL_RESULT == URL_DASHBOARD :
 			if n == 10:
-				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + n + 'attempts')
+				_LOGGER.error('Update of ' + str(self._name) + 'failed after ' + str(n) + 'attempts')
 				break
 			session_requests = requests.session()
 
