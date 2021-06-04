@@ -277,7 +277,7 @@ class GraadDag(RestoreEntity):
 
 				# Scrape graaddag
 				div = data.find_all("div", class_="table_cell")[5]
-				result = eval(div.get_text().replace('m3/graaddag', '').replace(',', '.').rstrip())
+				result = eval(div.get_text().replace('m3', '').replace(',', '.').rstrip())
 				self._attributes['last_update'] = dt.now().isoformat('T')
 				self._state = result
 			else: 
