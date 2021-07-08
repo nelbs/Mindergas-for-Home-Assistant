@@ -3,7 +3,7 @@
   "name": "mindergas",
   "documentation": "https://www.example.com",
   "requirements": [
-    "lxml==4.5.2",
+    "lxml==4.6.2",
     "bs4==0.0.1"
   ],
   "dependencies": [],
