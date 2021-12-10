@@ -101,15 +101,18 @@ class GasPrognose(RestoreEntity):
 			n += 1
 
 			if URL_RESULT == URL_DASHBOARD:
-				# Scrape url
-				raw_html = session_requests.get(URL_DATA, headers=dict(referer=URL_DATA)).text
-				data = BeautifulSoup(raw_html, 'html.parser')
+				try:
+					# Scrape url
+					raw_html = session_requests.get(URL_DATA, headers=dict(referer=URL_DATA)).text
+					data = BeautifulSoup(raw_html, 'html.parser')
 
-				# Scrape prognose
-				div = data.find_all("div", class_="table_cell")[9]
-				result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
-				self._attributes['last_update'] = dt.now().isoformat('T')
-				self._state = result
+					# Scrape prognose
+					div = data.find_all("div", class_="table_cell")[9]
+					result = round(eval(div.get_text().replace('m3','').replace(',' , '.').rstrip()))
+					self._attributes['last_update'] = dt.now().isoformat('T')
+					self._state = result
+				except:
+					self._state = 0
 			else: 
 				pass
 
