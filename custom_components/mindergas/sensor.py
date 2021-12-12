@@ -7,7 +7,7 @@ import voluptuous as vol
 from homeassistant.util import dt
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import (
-    ATTR_ATTRIBUTION, CONF_NAME, CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME)
+    ATTR_ATTRIBUTION, CONF_NAME, CONF_PASSWORD, CONF_SCAN_INTERVAL, CONF_USERNAME, VOLUME_CUBIC_METERS)
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.restore_state import RestoreEntity
@@ -53,7 +53,7 @@ class GasPrognose(RestoreEntity):
 	@property
 	def unit_of_measurement(self):
 	# Return the unit of measurement of this entity, if any.
-		return 'm3'
+		return VOLUME_CUBIC_METERS
 
 	@property
 	def state(self):
@@ -141,7 +141,7 @@ class GasUsed(RestoreEntity):
 	@property
 	def unit_of_measurement(self):
 	# Return the unit of measurement of this entity, if any.
-		return 'm3'
+		return VOLUME_CUBIC_METERS
 
 	@property
 	def state(self):
@@ -226,7 +226,7 @@ class GraadDag(RestoreEntity):
 	@property
 	def unit_of_measurement(self):
 	# Return the unit of measurement of this entity, if any.
-		return 'm3'
+		return VOLUME_CUBIC_METERS
 
 	@property
 	def state(self):
