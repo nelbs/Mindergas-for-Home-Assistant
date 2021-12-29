@@ -3,6 +3,10 @@
 This is repository is no longer supported as I dont use it myself. Please consider using https://github.com/Ernst79/degree-days instead. This repo does not rely on data of mindergas.nl but calculates the gas prognose and degree days.
 
 
+
+
+
+
 This platform scrapes the gas consumption from the dutch website mindergas.nl. It creates the folowing sensors:
 
 - sensor.mindergas_graaddag      : gas consumption per degree day
