@@ -35,10 +35,6 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     }
 )
 
-LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
-URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
-URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
-
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     username = config.get(CONF_USERNAME)
@@ -84,6 +80,9 @@ class GasPrognose(RestoreEntity):
 
     def update(self):
 
+        LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
+        URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+        URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
         URL_RESULT = "none"
         n = 0
         while not URL_RESULT == URL_DASHBOARD:
@@ -174,7 +173,13 @@ class GasUsed(RestoreEntity):
         return "mdi:chart-line"
 
     def update(self):
+        import requests
+        from bs4 import BeautifulSoup
+        from lxml import html
 
+        LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
+        URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+        URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
         URL_RESULT = "none"
         n = 0
         while not URL_RESULT == URL_DASHBOARD:
@@ -260,7 +265,13 @@ class GraadDag(RestoreEntity):
         return "mdi:chart-line"
 
     def update(self):
+        import requests
+        from bs4 import BeautifulSoup
+        from lxml import html
 
+        LOGIN_URL = "https://www.mindergas.nl/users/sign_in/"
+        URL_DATA = "https://www.mindergas.nl/member/year_overview/new"
+        URL_DASHBOARD = "https://www.mindergas.nl/member/dashboard"
         URL_RESULT = "none"
         n = 0
         while not URL_RESULT == URL_DASHBOARD:
